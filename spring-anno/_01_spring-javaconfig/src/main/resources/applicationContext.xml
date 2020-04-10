@@ -5,4 +5,5 @@
 
     <!-- 创建SomeBean的实例,交给IoC来管理 -->
     <bean id="somebean" class="com.zy._01_hello.SomeBean"/>
+    <bean id="otherBean" class="com.zy._06_xml_javaconfig.OtherBean"/>
 </beans>
