@@ -16,21 +16,25 @@ public class Config {
     /*
           Bean的依赖注入方式:
           1、内部bean的方式
+          2、通过调用需要注入的Bean的方式名()即可
      */
 
-    /*
-        方式一: 相当于内部Bean的形式
-        <bean id="" class="">
-            <property name="otherBean">
-                <bean class="" />  内部bean的方式
-            </property>
-        </bean>
-        这种方式用的很少!
-     */
     @Bean
     public SomeBean someBean() {
         SomeBean sb = new SomeBean();
-        sb.setOtherBean(new OtherBean());
+        sb.setOtherBean(otherBean());
         return sb;
+    }
+
+    @Bean
+    public SomeBean someBean2() {
+        SomeBean sb = new SomeBean();
+        sb.setOtherBean(otherBean());
+        return sb;
+    }
+
+    @Bean
+    public OtherBean otherBean() {
+        return new OtherBean();
     }
 }

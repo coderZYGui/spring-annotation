@@ -18,7 +18,10 @@ public class SomeBeanTest {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Config.class);
         SomeBean someBean = ctx.getBean("someBean", SomeBean.class);
         System.out.println(someBean.getOtherBean());
-        ctx.close();
+
+        SomeBean someBean2 = ctx.getBean("someBean2", SomeBean.class);
+        System.out.println(someBean2.getOtherBean());
+
     }
 
 }
