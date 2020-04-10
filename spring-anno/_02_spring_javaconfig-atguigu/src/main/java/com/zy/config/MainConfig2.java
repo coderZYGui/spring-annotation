@@ -1,10 +1,9 @@
 package com.zy.config;
 
 import com.zy.beans.Person;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
+import com.zy.condition.MacOSXConditaion;
+import com.zy.condition.WindowsCondition;
+import org.springframework.context.annotation.*;
 
 /**
  * Description:
@@ -12,6 +11,8 @@ import org.springframework.context.annotation.Scope;
  * @author zygui
  * @date 2020/4/10 18:02
  */
+// 满足当前条件,这个类中配置的所有bean注册才能生效: 对类进行统一设置
+//@Conditional({MacOSXConditaion.class})
 @Configuration
 public class MainConfig2 {
 
@@ -33,5 +34,24 @@ public class MainConfig2 {
     public Person person(){
         System.out.println("给容器中添加Person...");
         return new Person("张三", 22);
+    }
+
+    /*
+        @Conditional: 按照一定的条件进行判断,满足条件给容器中注册bean
+
+        如果系统是windows, 给容器中注册("bill")
+        如果系统是mac, 给容器中注册("linus")
+     */
+    // 配置到这个方法上,只对这个方法作条件判断: 如果满足,则这个方法注册的bean才能生效
+    @Conditional({WindowsCondition.class})
+    @Bean("bill")
+    public Person person1(){
+        return new Person("Bill Gates", 62);
+    }
+
+    @Conditional({MacOSXConditaion.class})
+    @Bean("linus")
+    public Person person2(){
+        return new Person("linus", 48);
     }
 }
