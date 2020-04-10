@@ -26,19 +26,11 @@ public class Config {
             方法的返回值类型 ---> bean的class类型
             @Bean(name="") ---> name可以为bean起多个id名(如果不设置name,默认id名就是方法名)
      */
-    @Bean
+    // 方式一: 配置init, destory
+    //@Bean(name="sb", initMethod = "init", destroyMethod = "destory")
+
+    @Bean(name="sb")
     public SomeBean someBean1() {
         return new SomeBean();
     }
-
-    @Bean
-    public SomeBean someBean2() {
-        return new SomeBean();
-    }
-
-    @Bean(name = {"sb", "sbb"})
-    public SomeBean someBean3() {
-        return new SomeBean();
-    }
-
 }
