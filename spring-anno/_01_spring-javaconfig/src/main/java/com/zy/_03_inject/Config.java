@@ -17,19 +17,13 @@ public class Config {
           Bean的依赖注入方式:
           1、内部bean的方式
           2、通过调用需要注入的Bean的方式名()即可
+          3、需要依赖的Bean,放入到参数列表中,会自动注入
      */
 
     @Bean
-    public SomeBean someBean() {
+    public SomeBean someBean(OtherBean ob) {
         SomeBean sb = new SomeBean();
-        sb.setOtherBean(otherBean());
-        return sb;
-    }
-
-    @Bean
-    public SomeBean someBean2() {
-        SomeBean sb = new SomeBean();
-        sb.setOtherBean(otherBean());
+        sb.setOtherBean(ob);
         return sb;
     }
 
