@@ -1,5 +1,6 @@
 package com.zy.test;
 
+import com.zy.beans.Blue;
 import com.zy.beans.Person;
 import com.zy.config.MainConfig;
 import com.zy.config.MainConfig2;
@@ -61,6 +62,21 @@ public class IoCTest {
 
         Map<String, Person> persons = ctx.getBeansOfType(Person.class);
         System.out.println(persons);
+    }
+
+    @Test
+    public void testImport(){
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfig2.class);
+        printBeans((AnnotationConfigApplicationContext) ctx);
+        Blue bean = ctx.getBean(Blue.class);
+        System.out.println(bean);
+    }
+
+    private void printBeans(AnnotationConfigApplicationContext atx){
+        String[] definitionNames = atx.getBeanDefinitionNames();
+        for (String name : definitionNames) {
+            System.out.println(name);
+        }
     }
 
 }

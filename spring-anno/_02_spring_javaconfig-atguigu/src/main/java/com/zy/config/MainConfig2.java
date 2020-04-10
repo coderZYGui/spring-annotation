@@ -2,6 +2,7 @@ package com.zy.config;
 
 import com.zy.beans.Person;
 import com.zy.condition.MacOSXConditaion;
+import com.zy.condition.MyImportSelector;
 import com.zy.condition.WindowsCondition;
 import org.springframework.context.annotation.*;
 
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.*;
 // 满足当前条件,这个类中配置的所有bean注册才能生效: 对类进行统一设置
 //@Conditional({MacOSXConditaion.class})
 @Configuration
+@Import(MyImportSelector.class)
 public class MainConfig2 {
 
 
