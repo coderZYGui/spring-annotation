@@ -22,7 +22,7 @@ public class IoCTest {
     ApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfig2.class);
 
     @Test
-    public void test1(){
+    public void test1() {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfig.class);
         // 看容器中有哪些bean,返回这些bean的名称
         String[] beanDefinitionNames = ctx.getBeanDefinitionNames();
@@ -32,7 +32,7 @@ public class IoCTest {
     }
 
     @Test
-    public void test2(){
+    public void test2() {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfig2.class);
         // 看容器中有哪些bean,返回这些bean的名称
 //        String[] beanDefinitionNames = ctx.getBeanDefinitionNames();
@@ -47,7 +47,7 @@ public class IoCTest {
     }
 
     @Test
-    public void test3(){
+    public void test3() {
         // 根据Person类型来获取容器中bean的名称
         String[] beanNamesForType = ctx.getBeanNamesForType(Person.class);
 
@@ -65,14 +65,24 @@ public class IoCTest {
     }
 
     @Test
-    public void testImport(){
+    public void testImport() {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfig2.class);
         printBeans((AnnotationConfigApplicationContext) ctx);
         Blue bean = ctx.getBean(Blue.class);
         System.out.println(bean);
+
+        // 工厂Bean获取的是调用getObject创建的对象
+        Object bean2 = ctx.getBean("colorFactoryBean");
+        Object bean3 = ctx.getBean("colorFactoryBean");
+        System.out.println("bean的类型:" + bean2.getClass());
+        System.out.println(bean2 == bean3);
+
+        // 获取ColorFactorybean的本身
+        Object bean4 = ctx.getBean("&colorFactoryBean");
+        System.out.println(bean4.getClass());
     }
 
-    private void printBeans(AnnotationConfigApplicationContext atx){
+    private void printBeans(AnnotationConfigApplicationContext atx) {
         String[] definitionNames = atx.getBeanDefinitionNames();
         for (String name : definitionNames) {
             System.out.println(name);

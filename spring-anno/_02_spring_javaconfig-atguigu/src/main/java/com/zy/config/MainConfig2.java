@@ -1,5 +1,6 @@
 package com.zy.config;
 
+import com.zy.beans.ColorFactoryBean;
 import com.zy.beans.Person;
 import com.zy.condition.MacOSXConditaion;
 import com.zy.condition.MyImportSelector;
@@ -55,5 +56,10 @@ public class MainConfig2 {
     @Bean("linus")
     public Person person2(){
         return new Person("linus", 48);
+    }
+
+    @Bean
+    public ColorFactoryBean colorFactoryBean(){
+        return new ColorFactoryBean();
     }
 }
