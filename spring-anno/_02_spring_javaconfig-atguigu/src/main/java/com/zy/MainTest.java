@@ -18,7 +18,7 @@ public class MainTest {
         System.out.println(person);*/
 
         ApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfig.class);
-        Person person = ctx.getBean("sb", Person.class);
+        Person person = ctx.getBean("person", Person.class);
         System.out.println(person);
 
         // 根据Person的类型,找到其bean的名称
