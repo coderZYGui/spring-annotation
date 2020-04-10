@@ -13,11 +13,6 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
  * @date 2020/4/10 11:07
  */
 
-/*
-    @PropertySource 标签引入了需要加载的资源文件
-    @PropertySources 引入多个资源文件
- */
-
 @Configuration
 @Import({DevConfig.class, TestConfig.class})
 public class AppConfig {
