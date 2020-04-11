@@ -21,6 +21,9 @@ import org.springframework.context.annotation.Configuration;
         2): 如果找到多个相同类型的组件,再将属性的名称作为组件的id去容器中查找
                            applicationContext.getBean("bookDao")
         3): @Qualifier("bookDao"): 使用@Qualifier指定需要装配的组件的id, 而不是使用属性名
+        4): 自动装配默认一定要将属性赋值好,否则就会报错; 可以使用@Autowired(required=false),如果没有找到对应要注入的bean,也不会报错
+        5): @Primary: 让Spring优先选择装配标注该注解的bean; 也可以继续使用@Qualifier指定需要装配的bean的名字
+
         BookService {
             @Autowired
             BookDao bookDao;
